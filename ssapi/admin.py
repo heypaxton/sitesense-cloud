@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.contrib import admin
 from .models import *
 
@@ -8,11 +10,11 @@ class WorksiteAdmin(admin.ModelAdmin):
 class DeviceAdmin(admin.ModelAdmin):
     list_display = ("worksite", "reading_url", "device_name", "created_at")
     search_fields = ["worksite", "reading_url", "device_name", "created_at"]
-
+#
 class ReadingAdmin(admin.ModelAdmin):
     list_display = ("device", "data", "created_at")
     search_fields = ["device", "data", "created_at"]
 
-admin.site.register(Reading)
-admin.site.register(Worksite)
-admin.site.register(Device)
+admin.site.register(Worksite, WorksiteAdmin)
+admin.site.register(Device, DeviceAdmin)
+admin.site.register(Reading, ReadingAdmin)

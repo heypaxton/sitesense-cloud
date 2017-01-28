@@ -21,7 +21,7 @@ from rest_framework import routers
 from ssapi import views
 
 router = routers.DefaultRouter()
-router.register(r'reading', views.ReadingViewSet)
+# router.register(r'reading', views.ReadingViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
