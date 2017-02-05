@@ -18,7 +18,7 @@ from django.contrib import admin
 
 from rest_framework import routers
 
-from ssapi import views
+from cmdsenseapi import views
 
 router = routers.DefaultRouter()
 # router.register(r'reading', views.ReadingViewSet)
