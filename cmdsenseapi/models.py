@@ -5,10 +5,11 @@ from django.db import models
 
 class Worksite(models.Model):
     site_name = models.CharField(max_length=100)
-    address = models.CharField(max_length=100)
-    city = models.CharField(max_length=60)
-    state = models.CharField(max_length=20)
-    zip_code = models.IntegerField(default=None)
+    descripton = models.TextField(default='')
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -20,7 +21,7 @@ class Worksite(models.Model):
 
 class Device(models.Model):
     worksite = models.ForeignKey(Worksite, on_delete=models.CASCADE)
-    reading_url = models.CharField(max_length=100)
+    reading_url = models.CharField(max_length=255)
     device_name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
