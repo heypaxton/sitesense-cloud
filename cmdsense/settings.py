@@ -165,3 +165,7 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+
+# HEROKU DB CONFIG
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
