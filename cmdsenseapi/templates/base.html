@@ -13,13 +13,13 @@
         <link rel="shortcut icon" href="images/favicon.ico">
 
         <!-- Bootstrap core CSS -->
-        <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
         <!-- MetisMenu CSS -->
-        <link href="../static/css/metisMenu.min.css" rel="stylesheet">
+        <link href="{% static 'css/metisMenu.min.css' %}" rel="stylesheet">
         <!-- Icons CSS -->
-        <link href="../static/css/icons.css" rel="stylesheet">
+        <link href="{% static 'css/icons.css' %}" rel="stylesheet">
         <!-- Custom styles for this template -->
-        <link href="../static/css/style.css" rel="stylesheet">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
     </head>
 
     <body>
@@ -29,12 +29,12 @@
         {% block confirm_mail %}{% endblock %}
 
         <!-- js placed at the end of the document so the pages load faster -->
-        <script src="../static/js/jquery-2.1.4.min.js"></script>
-        <script src="../static/js/bootstrap.min.js"></script>
-        <script src="../static/js/jquery.slimscroll.min.js"></script>
-        <script src="../static/js/metisMenu.min.js"></script>
+        <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.slimscroll.min.js' %}"></script>
+        <script src="{% static 'js/metisMenu.min.js' %}"></script>
 
         <!-- App Js -->
-        <script src="../static/js/jquery.app.js"></script>
+        <script src="{% static 'js/jquery.app.js' %}"></script>
     </body>
 </html>

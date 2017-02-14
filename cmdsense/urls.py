@@ -31,7 +31,7 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     # url(r'^', include('django.contrib.auth.urls')),
-    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^register/$', CreateView.as_view(
             template_name='registration/register.html',

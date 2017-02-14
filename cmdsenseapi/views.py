@@ -7,6 +7,38 @@ from rest_framework import viewsets
 from .serializers import *
 from .models import *
 
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
+def login(request):
+    """
+    Login user
+    """
+    # logout(request)
+    print("outside POST")
+    # POST request
+    if request.method == 'POST':
+        print("inside POST")
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # user authentication for username & password
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        print(username)
+        print(password)
+        return HttpResponseRedirect('/')
+
+    # GET request
+    return render(request, 'registration/login.html')
+
+def logout(request):
+    """
+    Logout user
+    """
+    logout(request)
+    return HttpResponseRedirect('/')
 
 # Create your views here.
 class ReadingViewSet(viewsets.ModelViewSet):
