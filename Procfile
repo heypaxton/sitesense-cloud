@@ -1,1 +1,1 @@
-web: gunicorn cmdsense.wsgi --log-file -
+web: gunicorn cmdsense.wsgi:application --log-file -
