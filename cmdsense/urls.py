@@ -15,6 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+from django.contrib.auth.views import password_reset
+
 
 from rest_framework import routers
 
@@ -24,6 +30,16 @@ router = routers.DefaultRouter()
 # router.register(r'reading', views.ReadingViewSet)
 
 urlpatterns = [
+    # url(r'^', include('django.contrib.auth.urls')),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^register/$', CreateView.as_view(
+            template_name='registration/register.html',
+            form_class=UserCreationForm,
+            success_url='/'
+    )),
+    # url(r'^reset_password/$', password_reset, {'template_name': '../cmdsenseapi/templates/reset_password.html'}),
+
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^', include(router.urls)),
