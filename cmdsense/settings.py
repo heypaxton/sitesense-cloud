@@ -109,16 +109,13 @@ WSGI_APPLICATION = 'cmdsense.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cmdsense_development',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default':  dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
 
 
@@ -154,11 +151,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__FILE__))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static')
+)
+
+STATICFILES_STORAGE = 'whitenoice.django.GzipManifestStaticFilesStorage'
+
 
 # Local settings
 try:
@@ -166,7 +171,3 @@ try:
 except ImportError:
     pass
 
-# HEROKU DB CONFIG
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
