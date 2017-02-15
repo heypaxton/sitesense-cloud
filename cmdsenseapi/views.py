@@ -17,15 +17,15 @@ def login(request):
     """
     # logout(request)
     print("outside POST")
+
     # POST request
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated:
         print("inside POST")
         username = request.POST.get('username')
         password = request.POST.get('password')
-
-        # user authentication for username & password
         user = authenticate(username=username, password=password)
         login(request, user)
+        print("logged in")
         print(username)
         print(password)
         return HttpResponseRedirect('/')
@@ -39,6 +39,10 @@ def logout(request):
     """
     logout(request)
     return HttpResponseRedirect('/')
+
+@login_required
+def index(request):
+    return render(request, 'index.html')
 
 # Create your views here.
 class ReadingViewSet(viewsets.ModelViewSet):

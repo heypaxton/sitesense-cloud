@@ -1,6 +1,7 @@
 from django.contrib.postgres.fields import JSONField
 from django.utils import timezone
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Worksite(models.Model):
