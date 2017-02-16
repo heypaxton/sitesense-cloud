@@ -11,29 +11,30 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-def login(request):
+def login_user(request):
     """
     Login user
     """
-    # logout(request)
-    print("outside POST")
+    logout_user(request)
 
     # POST request
-    if request.method == 'POST' and request.user.is_authenticated:
-        print("inside POST")
+    if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
-        login(request, user)
-        print("logged in")
-        print(username)
-        print(password)
-        return HttpResponseRedirect('/')
+
+        print("~~user")
+        print(user)
+
+        if user and user.is_active:
+            login(request, user)
+            print("logged in")
+            return HttpResponseRedirect('/')
 
     # GET request
     return render(request, 'registration/login.html')
 
-def logout(request):
+def logout_user(request):
     """
     Logout user
     """
@@ -44,7 +45,7 @@ def logout(request):
 def index(request):
     return render(request, 'index.html')
 
-# Create your views here.
+@login_required
 class ReadingViewSet(viewsets.ModelViewSet):
     # Add a reading
     # current_reading = http.client.HTTPConnection("10.0.0.91:5000")
