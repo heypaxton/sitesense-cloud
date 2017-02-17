@@ -60,6 +60,9 @@ def confirm_mail(request):
 def index(request):
     return render(request, 'index.html')
 
+def read(request):
+    return render(request, 'readings/read.html')
+
 @login_required
 class ReadingViewSet(viewsets.ModelViewSet):
     # Add a reading

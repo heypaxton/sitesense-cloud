@@ -20,21 +20,22 @@ class Worksite(models.Model):
     def __str__(self):
         return self.site_name
 
-class Device(models.Model):
+class Area(models.Model):
     worksite = models.ForeignKey(Worksite, on_delete=models.CASCADE)
-    reading_url = models.CharField(max_length=255)
-    device_name = models.CharField(max_length=100)
+    area_name = models.CharField(max_length=100)
+    description = models.TextField(default='')
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ('created_at',)
-        db_table = 'device'
+        db_table = 'area'
 
     def __str__(self):
-        return self.device_name
+        return self.area_name
+
 
 class Reading(models.Model):
-    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE, default=1)
     data = JSONField()
     created_at = models.DateTimeField(auto_now_add=True)
 

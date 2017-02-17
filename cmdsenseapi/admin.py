@@ -7,14 +7,14 @@ class WorksiteAdmin(admin.ModelAdmin):
     list_display = ("site_name", "address", "city", "state", "zip_code", "created_at")
     search_fields = ["site_name", "address", "city", "state", "zip_code", "created_at"]
 
-class DeviceAdmin(admin.ModelAdmin):
-    list_display = ("worksite", "reading_url", "device_name", "created_at")
-    search_fields = ["worksite", "reading_url", "device_name", "created_at"]
+class AreaAdmin(admin.ModelAdmin):
+    list_display = ("worksite", "area_name")
+    search_fields = ["worksite", "area_name"]
 #
 class ReadingAdmin(admin.ModelAdmin):
-    list_display = ("device", "data", "created_at")
-    search_fields = ["device", "data", "created_at"]
+    list_display = ("area", "data", "created_at")
+    search_fields = ["area", "data", "created_at"]
 
 admin.site.register(Worksite, WorksiteAdmin)
-admin.site.register(Device, DeviceAdmin)
+admin.site.register(Area, AreaAdmin)
 admin.site.register(Reading, ReadingAdmin)

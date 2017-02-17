@@ -23,10 +23,44 @@
     </head>
 
     <body>
-        {% block login %}{% endblock %}
-        {% block register %}{% endblock %}
-        {% block forget_password %}{% endblock %}
-        {% block confirm_mail %}{% endblock %}
+        <div id="page-wrapper">
+          <!-- NAVBAR -->
+          {% include "shared/navbar.html" %}
+          
+
+          <!-- CONTENT -->
+          <div class="page-contentbar">
+            <!--left navigation start-->
+            <aside class="sidebar-navigation">
+                <div class="scrollbar-wrapper">
+                    <div>
+                        <button type="button" class="button-menu-mobile btn-mobile-view visible-xs visible-sm">
+                            <i class="mdi mdi-close"></i>
+                        </button>
+                        <!-- User Detail box -->
+
+                        <!-- Left Menu Start -->
+                        <ul class="metisMenu nav" id="side-menu">
+                            <li><a href="index.html"><i class="ti-home"></i> Dashboard </a></li>
+                        </ul>
+                    </div>
+                </div><!--Scrollbar wrapper-->
+            </aside>
+            <!--left navigation end-->
+            
+            <div id="page-right-content">
+              <div class="container">
+                <div class="row">
+                  {% block login %}{% endblock %}
+                  {% block register %}{% endblock %}
+                  {% block forget_password %}{% endblock %}
+                  {% block confirm_mail %}{% endblock %}
+                  {% block content %}{% endblock %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
