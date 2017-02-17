@@ -41,6 +41,13 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+def forget_password(request):
+    """
+    Logout user
+    """
+    logout(request)
+    return render(request, 'registration/forget_password.html')
+
 @login_required
 def index(request):
     return render(request, 'index.html')

@@ -33,6 +33,7 @@ urlpatterns = [
     # url(r'^', include('django.contrib.auth.urls')),
     url(r'^login/$', views.login_user, name='login'),
     url(r'^logout/$', views.logout_user, name='logout'),
+    url(r'^forget_password/$', views.forget_password, name='forget_password'),
     url(r'^register/$', CreateView.as_view(
             template_name='registration/register.html',
             form_class=UserCreationForm,
