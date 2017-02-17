@@ -45,8 +45,15 @@ def forget_password(request):
     """
     Logout user
     """
-    logout(request)
+    if request.method == 'POST':
+        return HttpResponseRedirect('/confirm_mail')
     return render(request, 'registration/forget_password.html')
+
+def confirm_mail(request):
+    """
+    Logout user
+    """
+    return render(request, 'registration/confirm_mail.html')
 
 @login_required
 def index(request):
