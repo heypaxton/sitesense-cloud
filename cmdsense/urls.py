@@ -32,6 +32,7 @@ router = routers.DefaultRouter()
 urlpatterns = [
     # url(r'^', include('django.contrib.auth.urls')),
     url(r'^readings/read/$', views.read),
+    url(r'^readings/read_position/$', views.read_position),
     url(r'^login/$', views.login_user, name='login'),
     url(r'^logout/$', views.logout_user, name='logout'),
     url(r'^forget_password/$', views.forget_password, name='forget_password'),

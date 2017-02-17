@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import http
 import json
+import dweepy
 
 from rest_framework import viewsets
 
@@ -61,7 +62,24 @@ def index(request):
     return render(request, 'index.html')
 
 def read(request):
-    return render(request, 'readings/read.html')
+    readings = Reading.objects.all()
+    return render(request, 'readings/read.html', {'readings': readings})
+
+def read_position(request):
+    sensor = dweepy.get_latest_dweet_for('sitesense-sensor')
+    sensor = sensor[0]['content']
+
+    tag = dweepy.get_latest_dweet_for('cmdsense-tag')
+    tag = tag[0]['content']
+
+    gps = dweepy.get_latest_dweet_for('sitesense-gps')
+    gps = gps[0]['content']
+
+    Reading.objects.create(
+        area_id=1,
+        data={"sensor": sensor, "tag": tag, "gps": gps}
+    )
+    return redirect(read)
 
 @login_required
 class ReadingViewSet(viewsets.ModelViewSet):

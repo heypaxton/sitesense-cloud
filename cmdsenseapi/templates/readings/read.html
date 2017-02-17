@@ -2,19 +2,34 @@
 
 {% block content %}
   <div class="col-sm-12">
+    <div class="card-box">
+      <a class="btn btn-success btn-large" href="/readings/read_position">Read Position</a>
+    </div>
+  </div>
+  <div class="col-sm-12">
     <table class="table">
       <thead>
         <th>Area</th>
         <th>X</th>
         <th>Y</th>
         <th>Z</th>
+        <th>Pressure</th>
         <th>Latitude</th>
         <th>Longitude</th>
       </thead>
       <tbody>
-
+      {% for r in readings %}
+        <tr> 
+          <td>{{ r.area }}</td>
+          <td>{{ r.data.tag.x }}mm</td>
+          <td>{{ r.data.tag.y }}mm</td>
+          <td>{{ r.data.tag.z }}mm</td>
+          <td>{{ r.data.sensor.pressure }}mm</td>
+          <td>{{ r.data.gps.longitude }}</td>
+          <td>{{ r.data.gps.latitude }}</td>
+        </tr>
+      {% endfor %}
       </tbody>
     </table>
-  
   </div>
 {% endblock %}
