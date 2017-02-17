@@ -16,9 +16,10 @@ def login_user(request):
     Login user
     """
     logout_user(request)
-
+    print("outside POST")
     # POST request
     if request.method == 'POST':
+        print("inside POST")
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)

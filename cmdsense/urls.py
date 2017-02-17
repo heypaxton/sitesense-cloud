@@ -35,13 +35,11 @@ urlpatterns = [
     url(r'^logout/$', views.logout_user, name='logout'),
     url(r'^forget_password/$', views.forget_password, name='forget_password'),
     url(r'^confirm_mail/$', views.confirm_mail, name='confirm_mail'),
-
     url(r'^register/$', CreateView.as_view(
             template_name='registration/register.html',
             form_class=UserCreationForm,
             success_url='/'
     )),
-    # url(r'^reset_password/$', password_reset, {'template_name': '../cmdsenseapi/templates/reset_password.html'}),
 
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
