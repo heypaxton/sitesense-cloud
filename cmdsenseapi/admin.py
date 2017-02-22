@@ -10,7 +10,7 @@ class WorksiteAdmin(admin.ModelAdmin):
 class AreaAdmin(admin.ModelAdmin):
     list_display = ("worksite", "area_name")
     search_fields = ["worksite", "area_name"]
-#
+
 class ReadingAdmin(admin.ModelAdmin):
     list_display = ("area", "data", "created_at")
     search_fields = ["area", "data", "created_at"]

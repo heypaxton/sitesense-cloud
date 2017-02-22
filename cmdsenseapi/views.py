@@ -7,30 +7,27 @@ from rest_framework import viewsets
 
 from .serializers import *
 from .models import *
+from .forms import *
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+
 
 def login_user(request):
     """
     Login user
     """
     logout_user(request)
-    print("outside POST")
+
     # POST request
     if request.method == 'POST':
-        print("inside POST")
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
 
-        print("~~user")
-        print(user)
-
         if user and user.is_active:
             login(request, user)
-            print("logged in")
             return HttpResponseRedirect('/')
 
     # GET request
@@ -43,9 +40,23 @@ def logout_user(request):
     logout(request)
     return HttpResponseRedirect('/')
 
+def register(request):
+    """
+    Register user
+    """
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.set_password(user.password)
+            user.email = user.username
+            user.save()
+            return HttpResponseRedirect('/')
+    return render(request, 'registration/register.html')
+
 def forget_password(request):
     """
-    Logout user
+    forget password
     """
     if request.method == 'POST':
         return HttpResponseRedirect('/confirm_mail')
@@ -53,7 +64,7 @@ def forget_password(request):
 
 def confirm_mail(request):
     """
-    Logout user
+    confirm email sent
     """
     return render(request, 'registration/confirm_mail.html')
 
