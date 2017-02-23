@@ -12,6 +12,7 @@ from .forms import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 
 def login_user(request):
@@ -59,7 +60,13 @@ def forget_password(request):
     forget password
     """
     if request.method == 'POST':
-        return HttpResponseRedirect('/confirm_mail')
+        from_email = ""
+        to_email = request.POST.get("email", "")
+        password = ""
+        if to_email:
+            if User.objects.filter(username=to_email).exists():
+                send_mail('Password', password, from_email, [to_email], fail_silently=False)
+                return HttpResponseRedirect('/confirm_mail')
     return render(request, 'registration/forget_password.html')
 
 def confirm_mail(request):
