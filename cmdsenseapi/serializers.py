@@ -14,4 +14,4 @@ class AreaSerializer(serializers.HyperlinkedModelSerializer):
 class ReadingSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Reading
-        fields = ('device_id', 'data', 'created_at')
+        fields = ('data', 'created_at')

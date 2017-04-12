@@ -3,6 +3,11 @@
 {% block content %}
   <div class="col-sm-12">
     <div class="card-box">
+      <div id="graph"></div>	
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="card-box">
       <a class="btn btn-success btn-large" href="/readings/read_position">Read Position</a>
     </div>
   </div>
@@ -32,4 +37,45 @@
       </tbody>
     </table>
   </div>
+  <script>
+    var trace = {
+      x: [
+        {% for r in readings %}
+          {{ r.data.tag.x }}, 
+        {% endfor %}
+      ],
+      y: [
+        {% for r in readings %}
+          {{ r.data.tag.y }}, 
+        {% endfor %}
+      ],
+      z: [
+        {% for r in readings %}
+          {{ r.data.tag.z }}, 
+        {% endfor %}
+      ],
+      mode: 'markers',
+      marker: {
+        color: 'rgb(35,177,149)',
+        size: 10,
+        symbol: 'circle',
+        line: {
+          color: 'rgb(204, 204, 204)',
+          width: 1
+                            },
+        opacity: '0.9'
+      },
+      type: 'scatter3d'
+    };
+    var data = [trace];
+    var layout = {
+      margin: {
+        l: 0,
+        r: 0,
+        b: 0,
+        t: 0
+      }
+    };
+    Plotly.newPlot('graph', data, layout);
+  </script>
 {% endblock %}

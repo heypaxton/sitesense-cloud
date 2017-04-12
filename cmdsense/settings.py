@@ -25,7 +25,7 @@ SECRET_KEY = 'kxn3^4%5l67b()=272z20th#^rpwxjz2hjw@nmyf4f)6r@e)do'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['138.197.213.41']
 
 
 # Application definition
@@ -112,12 +112,12 @@ WSGI_APPLICATION = 'cmdsense.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cmdsense_development',
-        'USER': 'postgres',
-        'PASSWORD': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cmdsense',
+        'USER': 'cmdsenseadmin',
+        'PASSWORD': 'cfMCdjhZh4wE',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '',
     }
 }
 
@@ -159,9 +159,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-# Local settings
-try:
-    from .local_settings import *
-except ImportError:
-    pass
